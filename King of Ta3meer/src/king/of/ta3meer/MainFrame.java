@@ -1,10 +1,14 @@
 package king.of.ta3meer;
 
+import com.sun.javafx.geom.Curve;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -39,6 +43,11 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel2.setText(s.Username);
         jList1.setSelectedIndex(0);
         getData(0);
+        this.jInvDetails.setVisible(false);
+        this.jButton4.setVisible(true);
+        this.jButton5.setVisible(true);
+        this.jButton6.setVisible(true);
+        
     }
 
     /**
@@ -55,13 +64,15 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         data = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jInvDetails = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
+        jShowInv = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -74,6 +85,7 @@ public class MainFrame extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFocusable(false);
         setLocation(new java.awt.Point(500, 300));
+        setResizable(false);
 
         jPanel4.setBackground(new java.awt.Color(4, 28, 50));
         jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -81,6 +93,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(4, 41, 58));
         jPanel6.setForeground(new java.awt.Color(236, 179, 101));
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         data.setBackground(new java.awt.Color(4, 28, 50));
         data.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(240, 236, 227), 1, true));
@@ -122,61 +135,74 @@ public class MainFrame extends javax.swing.JFrame {
     });
     jScrollPane3.setViewportView(data);
 
-    jPanel5.setBackground(new java.awt.Color(236, 179, 101));
+    jPanel6.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 34, 630, 329));
 
-    jButton4.setBackground(new java.awt.Color(6, 70, 99));
-    jButton4.setFont(new java.awt.Font("Simplified Arabic", 1, 18)); // NOI18N
-    jButton4.setForeground(new java.awt.Color(255, 255, 255));
-    jButton4.setText("أضافة منتج");
-    jButton4.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton1ActionPerformed(evt);
-        }
-    });
+    jPanel5.setBackground(new java.awt.Color(236, 179, 101));
+    jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
     jButton5.setBackground(new java.awt.Color(6, 70, 99));
     jButton5.setFont(new java.awt.Font("Simplified Arabic", 1, 18)); // NOI18N
     jButton5.setForeground(new java.awt.Color(255, 255, 255));
     jButton5.setText("تعديل منتج");
+    jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    jButton5.setDefaultCapable(false);
+    jButton5.setFocusable(false);
+    jButton5.setMaximumSize(null);
+    jButton5.setPreferredSize(new java.awt.Dimension(120, 38));
     jButton5.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButton2ActionPerformed(evt);
         }
     });
+    jPanel5.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 23, 120, 38));
+
+    jButton4.setBackground(new java.awt.Color(6, 70, 99));
+    jButton4.setFont(new java.awt.Font("Simplified Arabic", 1, 18)); // NOI18N
+    jButton4.setForeground(new java.awt.Color(255, 255, 255));
+    jButton4.setText("أضافة منتج");
+    jButton4.setDefaultCapable(false);
+    jButton4.setFocusable(false);
+    jButton4.setMaximumSize(null);
+    jButton4.setPreferredSize(new java.awt.Dimension(120, 38));
+    jButton4.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton1ActionPerformed(evt);
+        }
+    });
+    jPanel5.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 23, 120, 38));
 
     jButton6.setBackground(new java.awt.Color(6, 70, 99));
     jButton6.setFont(new java.awt.Font("Simplified Arabic", 1, 18)); // NOI18N
     jButton6.setForeground(new java.awt.Color(255, 255, 255));
     jButton6.setText("حذف منتج");
+    jButton6.setDefaultCapable(false);
+    jButton6.setFocusable(false);
+    jButton6.setMaximumSize(null);
+    jButton6.setPreferredSize(new java.awt.Dimension(120, 38));
     jButton6.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButton3ActionPerformed(evt);
         }
     });
+    jPanel5.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(256, 23, 120, 38));
 
-    javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-    jPanel5.setLayout(jPanel5Layout);
-    jPanel5Layout.setHorizontalGroup(
-        jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanel5Layout.createSequentialGroup()
-            .addGap(118, 118, 118)
-            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
-            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
-            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(120, Short.MAX_VALUE))
-    );
-    jPanel5Layout.setVerticalGroup(
-        jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-            .addContainerGap(37, Short.MAX_VALUE)
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(25, 25, 25))
-    );
+    jInvDetails.setBackground(new java.awt.Color(6, 70, 99));
+    jInvDetails.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+    jInvDetails.setForeground(new java.awt.Color(255, 255, 255));
+    jInvDetails.setText("تفاصيل الفاتورة");
+    jInvDetails.setFocusable(false);
+    jInvDetails.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    jInvDetails.setMaximumSize(new java.awt.Dimension(149, 35));
+    jInvDetails.setMinimumSize(new java.awt.Dimension(149, 35));
+    jInvDetails.setPreferredSize(new java.awt.Dimension(149, 35));
+    jInvDetails.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jInvDetailsActionPerformed(evt);
+        }
+    });
+    jPanel5.add(jInvDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 18, 210, 50));
+
+    jPanel6.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 369, 630, 90));
 
     jList1.setBackground(new java.awt.Color(4, 28, 50));
     jList1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -196,59 +222,43 @@ public class MainFrame extends javax.swing.JFrame {
     jList1.setSelectionForeground(new java.awt.Color(4, 41, 58));
     jScrollPane1.setViewportView(jList1);
 
+    jPanel6.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 34, 177, 211));
+
     jButton7.setBackground(new java.awt.Color(6, 70, 99));
     jButton7.setFont(new java.awt.Font("Traditional Arabic", 1, 18)); // NOI18N
     jButton7.setForeground(new java.awt.Color(255, 255, 255));
+    jButton7.setFocusable(false);
     jButton7.setLabel("عرض");
     jButton7.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButton7ActionPerformed(evt);
         }
     });
+    jPanel6.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 251, 177, 35));
 
     jButton8.setBackground(new java.awt.Color(6, 70, 99));
     jButton8.setFont(new java.awt.Font("Traditional Arabic", 1, 18)); // NOI18N
     jButton8.setForeground(new java.awt.Color(255, 255, 255));
     jButton8.setText("فاتورة جديدة");
+    jButton8.setFocusable(false);
     jButton8.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButton8ActionPerformed(evt);
         }
     });
+    jPanel6.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 370, 177, 40));
 
-    javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-    jPanel6.setLayout(jPanel6Layout);
-    jPanel6Layout.setHorizontalGroup(
-        jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanel6Layout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
-            .addContainerGap())
-    );
-    jPanel6Layout.setVerticalGroup(
-        jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanel6Layout.createSequentialGroup()
-            .addGap(34, 34, 34)
-            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel6Layout.createSequentialGroup()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(27, Short.MAX_VALUE))
-    );
+    jShowInv.setBackground(new java.awt.Color(6, 70, 99));
+    jShowInv.setFont(new java.awt.Font("Traditional Arabic", 1, 18)); // NOI18N
+    jShowInv.setForeground(new java.awt.Color(255, 255, 255));
+    jShowInv.setText("عرض الفواتير");
+    jShowInv.setFocusable(false);
+    jShowInv.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jShowInvActionPerformed(evt);
+        }
+    });
+    jPanel6.add(jShowInv, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 420, 177, 40));
 
     jPanel1.setBackground(new java.awt.Color(236, 179, 101));
     jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -302,11 +312,10 @@ public class MainFrame extends javax.swing.JFrame {
     jPanel4Layout.setHorizontalGroup(
         jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 837, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap())
     );
     jPanel4Layout.setVerticalGroup(
@@ -314,166 +323,26 @@ public class MainFrame extends javax.swing.JFrame {
         .addGroup(jPanel4Layout.createSequentialGroup()
             .addGap(12, 12, 12)
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap())
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
     );
 
     pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       DBConnect connection = new DBConnect();
-        
-       Connection conn1 =connection.connect();
-       
-       //System.out.println(data.getValueAt(data.getSelectedRow(),7));
-       
-        
-        JFrame x = new JFrame();
-        x.setAlwaysOnTop(true);
-        if(data.getSelectedRow()!=-1){
-        int confirmation =JOptionPane.showConfirmDialog(x, "هل أنت متأكد من أنك تريد حذف العنصر ؟","رسالة تأكيد",YES_NO_OPTION);
-        if(confirmation==0){
-        try {
-            String query ="Delete from store where id ="+data.getValueAt(data.getSelectedRow(),7)+"";
-            Statement stmt2 = conn1.createStatement();
-            stmt2.executeUpdate(query);
-            getData(1);
-        } catch (SQLException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        }else{
-            //do nothing
-        }
-        }else{
-            JOptionPane.showMessageDialog(rootPane,"من فضلك أختر صف !");
-        }
-        
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        DBConnect connection = new DBConnect();
-        
-        Connection conn1 =connection.connect();//main table
-        Statement stmt1;
-        ArrayList<String> brand = new ArrayList<>();
-        ArrayList<String> country = new ArrayList<>();
-        ArrayList<String> kinds =new ArrayList<>();
-        try {
-            stmt1 = conn1.createStatement();
-            String query = "select brand from brand";
-            ResultSet rs    = stmt1.executeQuery(query);
-            while(rs.next()){
-                brand.add(rs.getString("brand"));
-            }
-            query = "Select country_name from countries";
-            rs =stmt1.executeQuery(query);
-            while(rs.next()){
-                country.add(rs.getString("country_name"));
-            }
-            query = "Select kind from kinds";
-            rs =stmt1.executeQuery(query);
-            while(rs.next()){
-                kinds.add(rs.getString("kind"));
-            }
-            //this.setVisible(false);
-            if(data.getSelectedRow()!=-1){
-            String oldname=(String) data.getValueAt(data.getSelectedRow(),0);
-            String old_price =String.valueOf(data.getValueAt(data.getSelectedRow(),2));
-            String old_quantity =String.valueOf(data.getValueAt(data.getSelectedRow(),1));
-            String old_country =(String) data.getValueAt(data.getSelectedRow(),4);
-            String old_brand = (String) data.getValueAt(data.getSelectedRow(),3);
-            int old_id =(int) data.getValueAt(data.getSelectedRow(),7);
-            String old_kind =new String();
-            query ="Select kind from store where id ="+old_id;
-            rs=stmt1.executeQuery(query);
-            if(rs.next()){
-                int kind = rs.getInt("kind");
-                query ="Select kind from kinds where id ="+kind;
-                rs=stmt1.executeQuery(query);
-                if(rs.next()){
-                  old_kind=rs.getString("kind");
-                }
-            }
-            UpdateProducts p = new UpdateProducts(brand, country, kinds, this.usr.id,oldname,old_price,old_quantity, old_country,old_brand, old_id,old_kind);
-            p.setVisible(true);
-            }else{
-                JOptionPane.showMessageDialog(rootPane,"من فضلك أختر صف !");
-            }
-            
-            connection.close(conn1);
-            stmt1.close();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        DBConnect connection = new DBConnect();
-        
-        Connection conn1 =connection.connect();//main table
-        Statement stmt1;
-        ArrayList<String> brand = new ArrayList<>();
-        ArrayList<String> country = new ArrayList<>();
-        ArrayList<String> kinds =new ArrayList<>();
-        try {
-            stmt1 = conn1.createStatement();
-            String query = "select brand from brand";
-            ResultSet rs    = stmt1.executeQuery(query);
-            while(rs.next()){
-                brand.add(rs.getString("brand"));
-            }
-            query = "Select country_name from countries";
-            rs =stmt1.executeQuery(query);
-            while(rs.next()){
-                country.add(rs.getString("country_name"));
-            }
-            query = "Select kind from kinds";
-            rs =stmt1.executeQuery(query);
-            while(rs.next()){
-                kinds.add(rs.getString("kind"));
-            }
-            //this.setVisible(false);
-            connection.close(conn1);
-            stmt1.close();
-            AddProduct p = new AddProduct(brand,country,kinds,this.usr.id);
-           
-            p.setVisible(true);
-           
-        } catch (SQLException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-        
-        
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
        //here we get the selected value to get the correct table from database; 
@@ -508,16 +377,13 @@ public class MainFrame extends javax.swing.JFrame {
         
         
         
-        
+       this.jInvDetails.setVisible(false);
+       this.jButton4.setVisible(true);
+       this.jButton5.setVisible(true);
+       this.jButton6.setVisible(true);
        }
         
-        
-        
-        
-        
-        
-        
-        
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton1ActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed1
@@ -535,15 +401,294 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         
+        DBConnect connection = new DBConnect();
         
-        
-        
-        
-        
-        
-        
+        Connection conn1 =connection.connect();//main table
+        PreparedStatement stmt1;
+        String query = "Insert Into invoices (seller_id,date) VALUES(?,?)";
+        try { 
+            stmt1 = conn1.prepareStatement(query);
+            stmt1.setInt(1,this.usr.id);
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            Date date = new Date();
+            String Dt = formatter.format(date);
+            stmt1.setString(2,Dt);
+            stmt1.executeUpdate();
+
+            stmt1.close();
+            connection.close(conn1);
+            
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.setVisible(false);
+        try {
+            new Invoices(this).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   
     }//GEN-LAST:event_jButton8ActionPerformed
 
+    private void jShowInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jShowInvActionPerformed
+        // TODO add your handling code here:
+        showInvoices();
+        
+        
+        
+    }//GEN-LAST:event_jShowInvActionPerformed
+
+    private void jInvDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jInvDetailsActionPerformed
+        // TODO add your handling code here:
+        DBConnect connection = new DBConnect();
+        
+        Connection conn1 =connection.connect();//main table
+        Statement stmt1;
+        
+        if(data.getSelectedRow()!=-1){
+            
+        String query = "Select id from invoices where id = "+data.getValueAt(data.getSelectedRow(), 4);
+        try { 
+            stmt1 = conn1.createStatement();
+            ResultSet rs = stmt1.executeQuery(query);
+            if(rs.next()){
+            this.setVisible(false);
+            new ShowInvoice(rs.getInt("id"),this).setVisible(true);       
+            }
+
+            stmt1.close();
+            connection.close(conn1);
+   
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jInvDetailsActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        DBConnect connection = new DBConnect();
+
+        Connection conn1 =connection.connect();
+
+        //System.out.println(data.getValueAt(data.getSelectedRow(),7));
+
+        JFrame x = new JFrame();
+        x.setAlwaysOnTop(true);
+        if(data.getSelectedRow()!=-1){
+            int confirmation =JOptionPane.showConfirmDialog(x, "هل أنت متأكد من أنك تريد حذف العنصر ؟","رسالة تأكيد",YES_NO_OPTION);
+            if(confirmation==0){
+                try {
+                    String query ="Delete from store where id ="+data.getValueAt(data.getSelectedRow(),7)+"";
+                    Statement stmt2 = conn1.createStatement();
+                    stmt2.executeUpdate(query);
+                    getData(1);
+                } catch (SQLException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }else{
+                //do nothing
+            }
+        }else{
+            JOptionPane.showMessageDialog(rootPane,"من فضلك أختر صف !");
+        }
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        DBConnect connection = new DBConnect();
+
+        Connection conn1 =connection.connect();//main table
+        Statement stmt1;
+        ArrayList<String> brand = new ArrayList<>();
+        ArrayList<String> country = new ArrayList<>();
+        ArrayList<String> kinds =new ArrayList<>();
+        try {
+            stmt1 = conn1.createStatement();
+            String query = "select brand from brand";
+            ResultSet rs    = stmt1.executeQuery(query);
+            while(rs.next()){
+                brand.add(rs.getString("brand"));
+            }
+            query = "Select country_name from countries";
+            rs =stmt1.executeQuery(query);
+            while(rs.next()){
+                country.add(rs.getString("country_name"));
+            }
+            query = "Select kind from kinds";
+            rs =stmt1.executeQuery(query);
+            while(rs.next()){
+                kinds.add(rs.getString("kind"));
+            }
+            //this.setVisible(false);
+            if(data.getSelectedRow()!=-1){
+                String oldname=(String) data.getValueAt(data.getSelectedRow(),0);
+                String old_price =String.valueOf(data.getValueAt(data.getSelectedRow(),2));
+                String old_quantity =String.valueOf(data.getValueAt(data.getSelectedRow(),1));
+                String old_country =(String) data.getValueAt(data.getSelectedRow(),4);
+                String old_brand = (String) data.getValueAt(data.getSelectedRow(),3);
+                int old_id =(int) data.getValueAt(data.getSelectedRow(),7);
+                String old_kind =new String();
+                query ="Select kind from store where id ="+old_id;
+                rs=stmt1.executeQuery(query);
+                if(rs.next()){
+                    int kind = rs.getInt("kind");
+                    query ="Select kind from kinds where id ="+kind;
+                    rs=stmt1.executeQuery(query);
+                    if(rs.next()){
+                        old_kind=rs.getString("kind");
+                    }
+                }
+                UpdateProducts p = new UpdateProducts(brand, country, kinds, this.usr.id,oldname,old_price,old_quantity, old_country,old_brand, old_id,old_kind);
+                p.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(rootPane,"من فضلك أختر صف !");
+            }
+
+            connection.close(conn1);
+            stmt1.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        DBConnect connection = new DBConnect();
+
+        Connection conn1 =connection.connect();//main table
+        Statement stmt1;
+        ArrayList<String> brand = new ArrayList<>();
+        ArrayList<String> country = new ArrayList<>();
+        ArrayList<String> kinds =new ArrayList<>();
+        try {
+            stmt1 = conn1.createStatement();
+            String query = "select brand from brand";
+            ResultSet rs    = stmt1.executeQuery(query);
+            while(rs.next()){
+                brand.add(rs.getString("brand"));
+            }
+            query = "Select country_name from countries";
+            rs =stmt1.executeQuery(query);
+            while(rs.next()){
+                country.add(rs.getString("country_name"));
+            }
+            query = "Select kind from kinds";
+            rs =stmt1.executeQuery(query);
+            while(rs.next()){
+                kinds.add(rs.getString("kind"));
+            }
+            //this.setVisible(false);
+            connection.close(conn1);
+            stmt1.close();
+            AddProduct p = new AddProduct(brand,country,kinds,this.usr.id);
+
+            p.setVisible(true);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void showInvoices(){
+        DBConnect connection = new DBConnect();
+        
+       Connection conn1 =connection.connect();//main table
+       Connection conn2 =connection.connect();//to get country
+       
+       Statement stmt1;//main table
+       Statement stmt2;//to get country
+
+       String seller_name ="";
+       String client_name;
+       String date;
+       String total;
+       String query = "Select * from invoices where state = 1"; //closed invoices
+       
+            try {
+            stmt1 = conn1.createStatement();
+            ResultSet rs    = stmt1.executeQuery(query);   
+            DefaultTableModel d =new DefaultTableModel(){
+                //to prevent users from changing the values inside the table ui
+                public boolean isCellEditable(int row, int column) {
+                return false;
+             }
+                
+            };
+            this.data.setModel(d);
+            
+            //"أسم المنتج", "الكمية المتواجدة", "سعر الوحدة", "نوع المنتج", "بلد التصنيع", "تاريخ أخر تعديل", "بواسطة"
+            d.addColumn("أسم العميل");
+            d.addColumn("أسم البائع");
+            d.addColumn("تاريخ الفاتورة");
+            d.addColumn("أجمالي الفاتورة");
+            d.addColumn("رقم الفاتورة");
+            
+            stmt2 = conn2.createStatement();
+            ResultSet r;
+            while(rs.next()){
+                
+                client_name = rs.getString("client_name");
+                date = rs.getString("date");
+                total = rs.getString("total");
+                String q1="Select username from users where id="+rs.getInt("seller_id")+" LIMIT 1";
+                //stmt2 = conn2.createStatement();
+                r =stmt2.executeQuery(q1);
+                
+                if(r.next()){
+                    
+                    seller_name = r.getString("username");
+                    
+                }
+                
+                
+                d.addRow(new Object[]{
+                client_name,
+                seller_name,
+                date,
+                total,
+                rs.getString("id"),           
+                });     
+            }
+            stmt2.close();
+            connection.close(conn2);
+            stmt1.close();
+            connection.close(conn1);
+            
+            } catch (SQLException ex) {
+               Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }  
+            this.jInvDetails.setVisible(true);
+            this.jButton4.setVisible(false);
+            this.jButton5.setVisible(false);
+            this.jButton6.setVisible(false);
+            
+    }
+    
+    
+    
     public void getData(int kind){
        DBConnect connection = new DBConnect();
         
@@ -693,6 +838,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jInvDetails;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JList<String> jList1;
@@ -702,5 +848,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton jShowInv;
     // End of variables declaration//GEN-END:variables
 }

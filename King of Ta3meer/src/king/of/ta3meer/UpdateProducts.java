@@ -83,12 +83,17 @@ public class UpdateProducts extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setLocation(new java.awt.Point(500, 300));
+        setResizable(false);
+        setSize(new java.awt.Dimension(440, 361));
 
-        jPanel1.setBackground(new java.awt.Color(142, 128, 106));
+        jPanel1.setBackground(new java.awt.Color(4, 41, 58));
         jPanel1.setForeground(new java.awt.Color(255, 230, 188));
 
         P_name.setBackground(new java.awt.Color(255, 230, 188));
         P_name.setFont(new java.awt.Font("Simplified Arabic", 1, 14)); // NOI18N
+        P_name.setForeground(new java.awt.Color(255, 255, 255));
         P_name.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         P_name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,30 +103,32 @@ public class UpdateProducts extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(142, 128, 106));
         jLabel1.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 230, 188));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("أسم المنتج");
 
         jLabel2.setBackground(new java.awt.Color(142, 128, 106));
         jLabel2.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 230, 188));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("الكمية");
 
         Quantity.setBackground(new java.awt.Color(255, 230, 188));
         Quantity.setFont(new java.awt.Font("Simplified Arabic", 1, 14)); // NOI18N
+        Quantity.setForeground(new java.awt.Color(255, 255, 255));
         Quantity.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jLabel3.setBackground(new java.awt.Color(142, 128, 106));
         jLabel3.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 230, 188));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("السعر");
 
         Price.setBackground(new java.awt.Color(255, 230, 188));
         Price.setFont(new java.awt.Font("Simplified Arabic", 1, 14)); // NOI18N
+        Price.setForeground(new java.awt.Color(255, 255, 255));
         Price.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jLabel4.setBackground(new java.awt.Color(142, 128, 106));
         jLabel4.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 230, 188));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("النوع");
 
         jBrand.setBackground(new java.awt.Color(142, 128, 106));
@@ -131,7 +138,7 @@ public class UpdateProducts extends javax.swing.JFrame {
 
         jLabel5.setBackground(new java.awt.Color(142, 128, 106));
         jLabel5.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 230, 188));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("بلد الصنع");
 
         jCountry.setBackground(new java.awt.Color(142, 128, 106));
@@ -141,7 +148,7 @@ public class UpdateProducts extends javax.swing.JFrame {
 
         jLabel6.setBackground(new java.awt.Color(142, 128, 106));
         jLabel6.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 230, 188));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("تصنيف");
 
         jKind.setBackground(new java.awt.Color(142, 128, 106));
@@ -149,10 +156,11 @@ public class UpdateProducts extends javax.swing.JFrame {
         jKind.setForeground(new java.awt.Color(228, 205, 167));
         jKind.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jButton1.setBackground(new java.awt.Color(195, 176, 145));
+        jButton1.setBackground(new java.awt.Color(236, 179, 101));
         jButton1.setFont(new java.awt.Font("Dubai Medium", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("تحديث");
+        jButton1.setFocusable(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -179,8 +187,11 @@ public class UpdateProducts extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(jLabel6))
+                        .addComponent(jLabel5)))
                 .addGap(41, 41, 41))
         );
         jPanel1Layout.setVerticalGroup(
@@ -199,18 +210,18 @@ public class UpdateProducts extends javax.swing.JFrame {
                     .addComponent(Price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jKind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jKind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );

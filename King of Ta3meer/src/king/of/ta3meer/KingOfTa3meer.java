@@ -17,6 +17,7 @@ public class KingOfTa3meer {
      */
     public static void main(String[] args) {
         //MainFrame mainFrame = new MainFrame();
+        new Login().setVisible(true);
     }
     
 }
