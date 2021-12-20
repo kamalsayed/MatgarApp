@@ -25,7 +25,7 @@ public class DBConnect {
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
             }
-            String url ="jdbc:sqlite:C:/sqlite/KoT.db";
+            String url ="jdbc:sqlite:D:/Projects/KingOfTa3meer/KoT.db";
             conn = DriverManager.getConnection(url);
             System.out.println("Connection To SqLite has been established .");
  
